@@ -1,16 +1,16 @@
-import { auth } from '@/auth';
-import Header from '@/components/Header'
-import { redirect } from 'next/navigation';
-import React, { ReactNode } from 'react'
+
+import Header from '@/components/Header';
+
+import React, { ReactNode } from 'react';
 
 const layout = async({children}:{children:ReactNode}) => {
-  const session=await auth();
   
-  if(!session) redirect('/starting-page');
   return (
     <main className='root-container'>
         <div className='mx-auto max-w-7xl'>
-            <Header />
+        <h1 className='font-bebas-neue text-7xl font-bold text-light-100 mt-20'>
+            Welcome to bookwise!!!
+        </h1>
             <div className='mt-20 pb-20'>
                 {children}
             </div>
@@ -19,4 +19,4 @@ const layout = async({children}:{children:ReactNode}) => {
   )
 }
 
-export default layout
+export default layout;
