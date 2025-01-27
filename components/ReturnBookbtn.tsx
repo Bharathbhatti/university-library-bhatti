@@ -22,7 +22,6 @@ const ReturnBookbtn = ({borrowid}:returnbook) => {
       
           if (response.ok) {
             alert(data.message || "Book returned successfully!");
-            // Optionally: Refresh the page or re-fetch data to update the UI
             window.location.reload();
           } else {
             alert(data.message || "Failed to return the book.");

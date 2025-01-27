@@ -5,15 +5,15 @@ import { like, desc } from "drizzle-orm";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const query = searchParams.get("q") || ""; // Get the search query
+  const query = searchParams.get("q") || ""; 
 
   try {
-    // Fetch books based on the query
+    
     const results = query
       ? await db
           .select()
           .from(books)
-          .where(like(books.title, `%${query}%`)) // Use SQL LIKE for filtering
+          .where(like(books.title, `%${query}%`)) 
           .orderBy(desc(books.createdAt))
       : await db.select().from(books).orderBy(desc(books.createdAt));
 

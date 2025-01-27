@@ -33,7 +33,7 @@ export const { POST } = serve<InitialData>(async (context) => {
 })
 
 async function sendEmail(message: string, email: string) {
-  // Implement email sending logic here
+  
   console.log(`Sending ${message} email to ${email}`)
 }
 

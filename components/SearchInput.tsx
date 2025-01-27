@@ -4,7 +4,7 @@ import { useState } from "react";
 
 interface SearchInputProps {
   initialValue?: string;
-  onSearch: (query: string) => void; // Callback for search
+  onSearch: (query: string) => void; 
 }
 
 const SearchInput = ({ initialValue = "", onSearch }: SearchInputProps) => {
@@ -13,7 +13,7 @@ const SearchInput = ({ initialValue = "", onSearch }: SearchInputProps) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value;
     setValue(query);
-    onSearch(query); // Trigger the onSearch callback
+    onSearch(query); 
   };
 
   return (

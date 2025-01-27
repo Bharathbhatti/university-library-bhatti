@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { borrowRecordId } = body;
 
-    // Validate input
+    
     if (!borrowRecordId) {
       return NextResponse.json(
         { message: "Borrow record ID is required." },
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       );
     }
 
-    // Update the status of the borrow record to "RETURNED"
+    
     const result = await db
       .update(borrowRecords)
       .set({ status: "RETURNED" })
