@@ -32,12 +32,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             if(!isPasswordValid)return null;
 
             
-            console.log(user[0])
             return {
                 id:user[0].id.toString(),
                 email:user[0].email,
+                role:user[0].role,
                 name:user[0].fullName,
-                role:user[0].role
+                
             } as User;
         }
     })
@@ -59,7 +59,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if(session.user){
             session.user.id=token.id as string;
             session.user.name=token.name as string;
-            session.user.role=token.role as string;
+            session.user.role=token.role as string
         }
 
         return session; 

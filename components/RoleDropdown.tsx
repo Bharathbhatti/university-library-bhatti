@@ -1,27 +1,40 @@
 "use client";
 
-import { db } from "@/database/drizzle";
-import { users } from "@/database/schema";
-import { compare } from "bcryptjs";
-import { eq } from "drizzle-orm";
 import { useState } from "react";
 
 interface RoleDropdownProps {
   currentRole: string;
-  userId: number;
+  userId: string;
 }
 
 const RoleDropdown: React.FC<RoleDropdownProps> = ({ currentRole, userId }) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [role, setRole] = useState(currentRole);
+  const [loading, setLoading] = useState(false);
 
   const updateRole = async (newRole: string) => {
-    console.log("role=",newRole)
-    
-    
+    setLoading(true);
+    try {
+      const response = await fetch("/api/updateRole", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, role: newRole }),
+      });
 
-    setRole(newRole); // Update role locally
-    setDropdownVisible(false); // Close dropdown
+      if (!response.ok) {
+        throw new Error("Failed to update role");
+      }
+
+      const data = await response.json();
+      
+      setRole(newRole); 
+    } catch (error) {
+      console.error("Error updating role:", error);
+      alert("Failed to update role. Please try again.");
+    } finally {
+      setLoading(false);
+      setDropdownVisible(false);
+    }
   };
 
   return (
