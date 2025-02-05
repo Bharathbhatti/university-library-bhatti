@@ -37,7 +37,7 @@ const page = async () => {
                             <span className='w-1/2'>{t.fullName}</span>
                             <span className='w-1/2'>{new Date(t.createdAt).toLocaleDateString()}</span>
                             <span className='w-1/4 '>{t.universityId}</span>
-                            <span className='w-1/4'>{t.status}</span>
+                            <span className='w-1/4 font-semibold'>{t.status}</span>
                             <span className='w-1/4'><ActionsDropdown
                                 userId={t.id}
                                 status={t.status}

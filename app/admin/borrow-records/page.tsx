@@ -1,6 +1,8 @@
 import BookCover from '@/components/BookCover';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { db } from '@/database/drizzle'
 import { books, borrowRecords, users } from '@/database/schema'
+import { getInitials } from '@/lib/utils';
 import { eq } from 'drizzle-orm';
 import React from 'react'
 
@@ -10,8 +12,8 @@ interface BorrowedBook extends Book {
   userId: string;
   name: string;
   email: string;
-  borrowedDate: string|Date,
-  dueDate: string|Date,
+  borrowedDate: string | Date,
+  dueDate: string | Date,
 }
 
 const page = async () => {
@@ -60,9 +62,14 @@ const page = async () => {
                   <span className="whitespace-normal font-semibold text-sm">{book.title}</span>
                 </span>
                 <span className="w-1/3 font-semibold">
-                  <div className="flex flex-col">
-                    <span className="text-sm font-medium">{book.name}</span>
-                    <span className="text-xs text-gray-500">{book.email}</span>
+                  <div className='user flex flex-row gap-2'>
+                    <Avatar>
+                      <AvatarFallback className='bg-amber-100'>{getInitials(book.name || 'IN')}</AvatarFallback>
+                    </Avatar>
+                    <div className='flex flex-col max-md:hidden'>
+                      <p className='font-semibold text-dark-200'>{book.name}</p>
+                      <p className='text-xs text-light-500'>{book.email}</p>
+                    </div>
                   </div>
                 </span>
                 <span className='w-1/6 font-semibold'>{new Date(book.borrowedDate).toLocaleDateString("en-US", {
