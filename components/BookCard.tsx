@@ -16,7 +16,13 @@ const BookCard = ({
       href={`/books/${id}`}
       className="w-full flex flex-col items-center hover:scale-105 transition-transform duration-300 "
     >
-      <BookCover coverColor={coverColor} coverImage={coverUrl} />
+      {coverUrl ? (
+          <BookCover coverColor={coverColor} coverImage={coverUrl} />
+        ) : (
+          <div className="h-40 w-28 bg-gray-200 flex items-center justify-center">
+            <p className="text-gray-500">No Cover</p>
+          </div>
+        )}
 
       <div className="xs:max-w-40 max-w-28">
         <p className="book-title">{title}</p>

@@ -1,7 +1,6 @@
 import { auth } from "@/auth";
 import BookCover from "@/components/BookCover";
 import ReturnBookbtn from "@/components/ReturnBookbtn";
-import { Button } from "@/components/ui/button";
 import ViewBookbtn from "@/components/ViewBookbtn";
 import { db } from "@/database/drizzle";
 import { borrowRecords, books } from "@/database/schema";
@@ -72,7 +71,7 @@ const page = async () => {
       {/* Currently Borrowed Books Section */}
       <section>
         <h2 className="text-4xl font-semibold mb-8">Currently Borrowed Books</h2>
-        <div className="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-auto-fit sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {currentBorrowedBooks.length > 0 ? (
             currentBorrowedBooks.map((book) => (
               <div
@@ -99,7 +98,7 @@ const page = async () => {
       {/* Previously Borrowed Books Section */}
       <section className="mt-12">
         <h2 className="text-4xl font-semibold mb-8">Previously Borrowed Books</h2>
-        <div className="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-auto-fit sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {uniquePreviouslyBorrowedBooks.length > 0 ? (
             uniquePreviouslyBorrowedBooks.map((book) => (
               <div

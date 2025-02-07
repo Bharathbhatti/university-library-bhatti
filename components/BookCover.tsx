@@ -37,9 +37,11 @@ const BookCover = ({
                 path={coverImage}
                 urlEndpoint={config.env.imageKit.urlEndpoint}
                 alt='Book Cover'
-                fill
                 className='rounded-sm object-fill'
                 loading='lazy'
+                priority
+                width={400}
+                height={600}
                 lqip={{active:true}}
             />
         </div>
