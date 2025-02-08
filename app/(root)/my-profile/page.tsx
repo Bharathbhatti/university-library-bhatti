@@ -90,7 +90,7 @@ const page = async () => {
               </div>
             ))
           ) : (
-            <p className="text-gray-400">You have no currently borrowed books.</p>
+            <p className="text-gray-400 mt-4">You haven't borrowed any books yet. Explore our library!</p>
           )}
         </div>
       </section>

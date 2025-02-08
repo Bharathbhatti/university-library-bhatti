@@ -1,31 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface SearchInputProps {
-  initialValue?: string;
-  onSearch: (query: string) => void; 
+  initialValue: string;
+  onSearch: (query: string) => void;
 }
 
-const SearchInput = ({ initialValue = "", onSearch }: SearchInputProps) => {
-  const [value, setValue] = useState(initialValue);
+const SearchInput = ({ initialValue, onSearch }: SearchInputProps) => {
+  const [inputValue, setInputValue] = useState(initialValue);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const query = event.target.value;
-    setValue(query);
-    onSearch(query); 
-  };
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      onSearch(inputValue);
+    }, 300);
+
+    return () => clearTimeout(handler);
+  }, [inputValue, onSearch]);
 
   return (
-    <div className="flex items-center mb-4">
-      <input
-        type="text"
-        className="border border-gray-300 rounded-lg p-2 flex-grow"
-        placeholder="Search books by title..."
-        value={value}
-        onChange={handleChange}
-      />
-    </div>
+    <input
+      value={inputValue}
+      onChange={(e) => setInputValue(e.target.value)}
+      placeholder="Search books..."
+      className="w-full p-3 rounded-lg bg-gray-800 text-white"
+    />
   );
 };
 
