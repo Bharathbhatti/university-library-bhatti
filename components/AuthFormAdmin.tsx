@@ -18,6 +18,7 @@ import { FIELD_NAMES, FIELD_TYPES } from "@/constants";
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import FileUpload from "./FileUpload";
+import Link from "next/link";
 
 
 interface Props<T extends FieldValues> {
@@ -121,6 +122,12 @@ const AuthFormAdmin = <T extends FieldValues>({ type, schema, defaultValues, onS
                     ))}
 
                     <Button type="submit" className="form-btn">{isSignIn?'Sign In':'Sign Up'}</Button>
+                    <div className="text-center font-bold text-white mt-3 flex justify-center gap-1">
+                    <p>Not a Admin?</p>
+                    <Link href={'/sign-in'}>
+                    <p className=" hover:text-yellow-300"> Go to User</p>
+                    </Link>
+                    </div>
                 </form>
             </Form>
             

@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { db } from '@/database/drizzle'
 import { books, borrowRecords, users } from '@/database/schema'
 import { getInitials } from '@/lib/utils';
-import { eq } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 import React from 'react'
 
 interface BorrowedBook extends Book {
@@ -40,7 +40,7 @@ const page = async () => {
     email: users.email,
     borrowedDate: borrowRecords.borrowDate,
     dueDate: borrowRecords.dueDate,
-  }).from(borrowRecords).innerJoin(books, eq(borrowRecords.bookId, books.id)).innerJoin(users, eq(borrowRecords.userId, users.id))
+  }).from(borrowRecords).innerJoin(books, eq(borrowRecords.bookId, books.id)).innerJoin(users, eq(borrowRecords.userId, users.id)).orderBy(desc(borrowRecords.borrowDate))
   return (
     <div className='mt-7 w-full overflow-hidden'>
       <div className='overflow-x-auto'>
